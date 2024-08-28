@@ -12,6 +12,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+			],
+			navesflux: [
+				{
+					uid: "FIRST",
+					name: "white1",
+					initial: "white"
+				},
+				{
+					uid: "SECOND",
+					name: "white2",
+					initial: "white"
+				}
 			]
 		},
 		actions: {
@@ -23,6 +35,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+				console.log('se cargo la pagina dersde flux')
+				fetch('https://swapi.dev/api/starships')
+				.then( (response)=> response.json() )
+				// .then( (data)=> console.log(data.results))
+				.then( (data)=> setStore({ navesflux: data.results }))
+
+				
+
 			},
 			changeColor: (index, color) => {
 				//get the store
