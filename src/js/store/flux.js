@@ -24,12 +24,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					name: "white2",
 					initial: "white"
 				}
-			]
+			],
+			message: 'inicial',
+			misNaves: ['bus','taxi']
+
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			changeMesasge: (tituloNave) => {
+				console.log('changeMesasge dsed flux')
+				const store = getStore();
+				setStore({ message: tituloNave });
+				if(store.misNaves.includes(tituloNave)){
+					console.log('ya esta el elemento')
+					setStore({ misNaves: store.misNaves.filter( (nave)=> nave != tituloNave   ) });
+				}else{
+					console.log('No esta el elemento')
+					setStore({ misNaves: [...store.misNaves,tituloNave] });
+				}
+
+				
+
 			},
 			loadSomeData: () => {
 				/**
@@ -40,9 +59,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then( (response)=> response.json() )
 				// .then( (data)=> console.log(data.results))
 				.then( (data)=> setStore({ navesflux: data.results }))
-
-				
-
 			},
 			changeColor: (index, color) => {
 				//get the store

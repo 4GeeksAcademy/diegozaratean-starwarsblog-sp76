@@ -14,7 +14,9 @@ export const Home = () => {
 		
 	
 			<h1>Desde FLUX con componenete</h1>
-			{store.navesflux.map( (nave)=>  <Cardnave key={nave.uid } uid={nave.model }  name={nave.name}  /> )}
+			<div className="row flex-row flex-nowrap" style={{overflowX: 'auto'}}>
+				{store.navesflux.map( (nave)=>  <Cardnave key={nave.uid } uid={nave.model }  name={nave.name}  /> )}
+			</div>
 
 		</div>
 	);
